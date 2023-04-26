@@ -1,0 +1,6 @@
+matrix_kind = h, N =5000<r> = .596771488901036
+matrix_kind = h, N =50<r> = .598447156722311
+matrix_kind = h, N =500<r> = .600905605429008
+matrix_kind = d, N =5000<r> = .380722107230642
+matrix_kind = d, N =50<r> = .393232986126512
+matrix_kind = d, N =500<r> = .390480357585984
