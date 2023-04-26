@@ -1,0 +1,77 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2513
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fmodern\fcharset0 Courier;\f1\fnil\fcharset0 Menlo-Regular;}
+{\colortbl;\red255\green255\blue255;\red255\green255\blue255;\red0\green0\blue0;\red255\green255\blue255;
+\red255\green255\blue255;}
+{\*\expandedcolortbl;;\cssrgb\c100000\c100000\c100000\c0;\cssrgb\c0\c0\c0;\cssrgb\c100000\c100000\c100000;
+\cssrgb\c100000\c100000\c99985;}
+{\*\listtable{\list\listtemplateid1\listhybrid{\listlevel\levelnfc23\levelnfcn23\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace360\levelindent0{\*\levelmarker \{square\}}{\leveltext\leveltemplateid1\'01\uc0\u9642 ;}{\levelnumbers;}\fi-360\li720\lin720 }{\listname ;}\listid1}}
+{\*\listoverridetable{\listoverride\listid1\listoverridecount0\ls1}}
+\paperw11900\paperh16840\margl1440\margr1440\vieww33400\viewh21000\viewkind0
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 \cb2 README FILE: CODE IN EX3-LAMBERTINI\
+\
+CHECKPOINTS_MOD.F90:\
+Module that contains a checkpoints routine that can performs checks on functions and subroutines under the control of a logical variable. \
+Moreover are present two routines that perform dimensionality checks on two matrices in order to verify that they can be multiplied. These two routines are private because they are grouped under the same interface.\
+\
+Subroutine checkpoints (debug, sub_func_name, line):\
+\pard\pardeftab720\partightenfactor0
+\cf3 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec3 This subroutine is thought to test other functions or subroutines. The argument\cf0 \strokec0  \cf3 \strokec3 debug\cf0 \strokec0  \cf3 \strokec3 is a logical variable whose value\cf0 \strokec0  \cf3 \strokec3 is determined as the result of operations performed in other routines called in the main program. The\cf0 \strokec0  \cf3 \strokec3 sub_func_name\cf0 \strokec0  \cf3 \strokec3 argument has to be a string representing the name of the routine tested and the\cf0 \strokec0  \cf3 \strokec3 line\cf0 \strokec0  \cf3 \strokec3 argument is an integer representing\cf0 \strokec0  \cf3 \strokec3 the line on which the control is performed. The subroutine print on screen a message and stop or not the program\cf0 \strokec0  \cf3 \strokec3 according to the value of the\cf0 \strokec0  \cf3 \strokec3 debug\cf0 \strokec0  \cf3 \strokec3 variable passed to it. In particular, it\'92s printed on screen the value of\cf0 \strokec0  \cf3 \strokec3 debug\cf0 \strokec0  \cf3 \strokec3 , the\cf0 \strokec0  \cf3 \strokec3 name of the routine tested and the line of code where it\'92s located. If the value of\cf0 \strokec0  \cf3 \strokec3 debug\cf0 \strokec0  \cf3 \strokec3 is\cf0 \strokec0  \cf3 \strokec3 .true.\cf0 \strokec0  \cf3 \strokec3 then the program\cf0 \strokec0  \cf3 \strokec3 continue to be executed, if instead the value is\cf0 \strokec0  \cf3 \strokec3 .false.\cf0 \strokec0  \cf3 \strokec3 the program will stop.\
+\
+\
+\
+Subroutine to perform dimensionality check:\
+\
+Call dim_check(args\'85)\cf0 \strokec0 \
+\
+\
+Args could be : \
+\pard\tx220\tx720\pardeftab720\li720\fi-720\partightenfactor0
+\ls1\ilvl0\cf0 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	
+\f1 \uc0\u9642 
+\f0 	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 Two matrices and an optional logical variable \
+\ls1\ilvl0\kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	
+\f1 \uc0\u9642 
+\f0 	}two one-dimensional vector with 2 elements (dimensions of the matrices) and an optional logical variable.\
+\pard\tx566\pardeftab720\partightenfactor0
+\cf0 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec0 \
+EX_03.F90:\
+Program useful to perform matrix-matrix multiplication, monitoring the performance, with two different loops and with the matmul() Fortran intrinsic function.\
+It contains different subroutines:\
+\pard\tx566\pardeftab720\partightenfactor0
+\cf0 \outl0\strokewidth0   \
+	subroutine rand_init_mat(mm,dim_1,dim_2,debug):\outl0\strokewidth0 \strokec0 \
+\pard\tx566\pardeftab720\partightenfactor0
+\cf0 \strokec0   \
+  	subroutine that initialize the elements of a two-dimensional array with\
+  	real, double precision, random numbers between 1 and 100.\
+  	It takes as arguments the two matrices and an optional logical variable\
+  	useful to interact with checkpoints subroutine.\
+\
+	\
+	\outl0\strokewidth0 subroutine mat_mul_loop1(mm_1,mm_2, m_fin, debug):\outl0\strokewidth0 \strokec0 \
+	\
+	Subroutine that perform the mat-mat multiplication with the first loop\
+	It takes as arguments the two matrices to be multiplied, the matrix\
+	in which the result will be written, and an optional logical variable\
+	useful to interact with checkpoints subroutine.\
+\
+\
+\pard\tx566\pardeftab720\partightenfactor0
+\cf0 \strokec0 	\outl0\strokewidth0 subroutine mat_mul_loop2(mm_1,mm_2, m_fin, debug):\
+\outl0\strokewidth0 \strokec0 \
+\pard\tx566\pardeftab720\partightenfactor0
+\cf0 \strokec0  	Subroutine that perform the mat-mat multiplication with the second loop\
+  	It takes as arguments the two matrices to be multiplied, the matrix\
+  	in which the result will be written, and an optional logical variable\
+  	useful to interact with checkpoints subroutine.\
+  	\
+  \outl0\strokewidth0   \
+	subroutine write_a_matrix(mm):\
+\outl0\strokewidth0 \strokec0 \
+	subroutine useful to write on screen a matrix in a readable way\cf4 \strokec4 .\cf5 \strokec5 \
+}
